@@ -6,9 +6,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+	this->setWindowTitle("Start menu");
     m_settings = new Settings();
     m_game = new GameWindow();
-    connect(this->m_game, SIGNAL(siClosed()), SLOT(on_gameWindow_closed()));
+	connect(this->m_game, SIGNAL(siClosed()), this, SLOT(onGameClosed()));
 }
 
 MainWindow::~MainWindow()
@@ -19,21 +20,22 @@ MainWindow::~MainWindow()
 void MainWindow::on_pb_startGame_clicked()
 {
     this->hide();
-    m_game->show();
+	m_game->show();
 }
 
 void MainWindow::on_pb_settings_clicked()
 {
-    this->hide();
+	this->hide();
     m_settings->exec();
+	this->show();
 }
 
 void MainWindow::on_pb_exit_clicked()
 {
-    this->close();
+	this->close();
 }
 
-void MainWindow::on_gameWindow_closed()
+void MainWindow::onGameClosed()
 {
-    this->show();
+	this->show();
 }

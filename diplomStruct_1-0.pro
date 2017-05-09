@@ -12,25 +12,33 @@ TARGET = diplomStruct_1-0
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
-    settings.cpp \
-    gamewindow.cpp \
-    humanplayer.cpp \
-    computerplayer.cpp \
-    table.cpp \
-    tablecards.cpp \
-    dealer.cpp
+SOURCES += \
+    src/computerplayer.cpp \
+    src/dealer.cpp \
+    src/gamewindow.cpp \
+    src/humanplayer.cpp \
+    src/mainwindow.cpp \
+    src/settings.cpp \
+    src/table.cpp \
+    src/tablecards.cpp \
+    main.cpp
 
-HEADERS  += mainwindow.h \
-    settings.h \
-    gamewindow.h \
-    humanplayer.h \
-    computerplayer.h \
-    table.h \
-    tablecards.h \
-    dealer.h
+HEADERS  += \
+    src/computerplayer.h \
+    src/dealer.h \
+    src/gamewindow.h \
+    src/humanplayer.h \
+    src/mainwindow.h \
+    src/settings.h \
+    src/table.h \
+    src/tablecards.h
 
-FORMS    += mainwindow.ui \
-    settings.ui \
-    gamewindow.ui
+FORMS    += \
+    UIs/gamewindow.ui \
+    UIs/mainwindow.ui \
+    UIs/settings.ui
+
+DISTFILES +=
+
+RESOURCES += \
+    images.qrc

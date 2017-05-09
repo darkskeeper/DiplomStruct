@@ -23,13 +23,20 @@ private:
     ComputerPlayer *m_computer;
 
 protected:
-    virtual void closeEvent(QCloseEvent *e);
+	virtual void closeEvent(QCloseEvent *event);
+	virtual void showEvent(QShowEvent *event);
 
 
 public:
     explicit GameWindow(QWidget *parent = 0);
     ~GameWindow();
 private slots:
+
+public slots:
+	void slCallClicked();
+	void slRaiseClicked();
+	void slFoldClicked();
+	void slNextDealClicked();
 
 signals:
     void siClosed();

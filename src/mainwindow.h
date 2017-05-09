@@ -24,12 +24,9 @@ public:
 
 private slots:
     void on_pb_startGame_clicked();
-
     void on_pb_settings_clicked();
-
     void on_pb_exit_clicked();
-
-    void on_gameWindow_closed();
+	void onGameClosed();
 
 };
 
