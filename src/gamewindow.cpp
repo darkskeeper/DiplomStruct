@@ -11,6 +11,8 @@ GameWindow::GameWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 	this->setWindowTitle("Poker");
+	imageBack = new QPixmap(":/Images/back.png");
+	isGameStart = true;
 	connect(ui->pbCall, SIGNAL(clicked()), this, SLOT(slCallClicked()));
 	connect(ui->pbRaise, SIGNAL(clicked()), this, SLOT(slRaiseClicked()));
 	connect(ui->pbFold, SIGNAL(clicked()), this, SLOT(slFoldClicked()));
@@ -39,21 +41,130 @@ void GameWindow::slFoldClicked()
 
 void GameWindow::slNextDealClicked()
 {
-	QMessageBox::information(0, "Information", "Next deal clicked");
+	//QMessageBox::information(0, "Information", "Next deal clicked");
+	if(isGameStart)
+	{
+		showTable();//showing buttons, bank and bet labels
+	}
+	setTableReady();
+/*	hide_table();//hiding table and ai_hand cards, hiding start_game button
+	room->startGame();//deals and showing pl and ai amount
+	if(ui->Lcur_am_ai->text().toInt() == 0)
+	{
+		setWindowTitle("Player won");
+		close();
+	}
+	if(ui->Lcur_am->text().toInt() <= 0)
+	{
+		setWindowTitle("AI won");
+		close();
+	}
+	fAITurn();*/
 }
 
+
+void GameWindow::hideAll()
+{
+	hideCards();
+	ui->lbCompAmount->hide();
+	ui->lbCompAmountInfo->hide();
+	ui->lbPlAmount->hide();
+	ui->lbPlAmountInfo->hide();
+	ui->pbNextDeal->setText("Start game");
+	ui->pbCall->hide();
+	ui->pbFold->hide();
+	ui->pbRaise->hide();
+	ui->spinBox->hide();
+}
+
+void GameWindow::hideCards()
+{
+	ui->lbPlayerCard1->hide();
+	ui->lbPlayerCard2->hide();
+	ui->lbCompCard1->hide();
+	ui->lbCompCard2->hide();
+	ui->lbTableCard1->hide();
+	ui->lbTableCard2->hide();
+	ui->lbTableCard3->hide();
+	ui->lbTableCard4->hide();
+	ui->lbTableCard5->hide();
+	ui->lbWinner->hide();
+	ui->lbCurBank->hide();
+	ui->lbCurBankInfo->hide();
+	ui->lbCurBet->hide();
+	ui->lbCurBetInfo->hide();
+	ui->lbPlAmount->hide();
+	ui->lbPlAmountInfo->hide();
+	ui->lbCompAmount->hide();
+	ui->lbCompAmountInfo->hide();
+}
+
+void GameWindow::showTable()
+{
+	ui->lbPlayerCard1->show();
+	ui->lbPlayerCard1->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbPlayerCard1->setMask(imageBack->mask());
+	ui->lbPlayerCard2->show();
+	ui->lbPlayerCard2->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbPlayerCard2->setMask(imageBack->mask());
+	ui->lbCompCard1->show();
+	ui->lbCompCard1->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbCompCard1->setMask(imageBack->mask());
+	ui->lbCompCard2->show();
+	ui->lbCompCard2->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbCompCard2->setMask(imageBack->mask());
+	ui->lbTableCard1->show();
+	ui->lbTableCard1->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbTableCard1->setMask(imageBack->mask());
+	ui->lbTableCard2->show();
+	ui->lbTableCard2->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbTableCard2->setMask(imageBack->mask());
+	ui->lbTableCard3->show();
+	ui->lbTableCard3->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbTableCard3->setMask(imageBack->mask());
+	ui->lbTableCard4->show();
+	ui->lbTableCard4->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbTableCard4->setMask(imageBack->mask());
+	ui->lbTableCard5->show();
+	ui->lbTableCard5->setPixmap(imageBack->scaled(100,100,Qt::KeepAspectRatioByExpanding));
+	ui->lbTableCard5->setMask(imageBack->mask());
+	ui->lbCurBank->show();
+	ui->lbCurBankInfo->show();
+	ui->lbCurBet->show();
+	ui->lbCurBetInfo->show();
+	ui->lbPlAmount->show();
+	ui->lbPlAmountInfo->show();
+	ui->lbCompAmount->show();
+	ui->lbCompAmountInfo->show();
+	ui->pbCall->show();
+	ui->pbFold->show();
+	ui->pbRaise->show();
+	ui->spinBox->show();
+	ui->pbNextDeal->setText("Next Deal");
+}
+
+void GameWindow::setTableReady()
+{
+	ui->lbCurBank->setText("0");
+	ui->lbCurBet->setText("0");
+	ui->pbNextDeal->hide();
+
+}
 
 void GameWindow::closeEvent(QCloseEvent *event)
 {
 	emit siClosed();
+	isGameStart = true;
 	event->accept();
 
 }
 
 void GameWindow::showEvent(QShowEvent *event)
 {
+	hideAll();
+	return;
 	//player cards
-	QPixmap image0(":/Images/0.png");
+	/*QPixmap image0(":/Images/0.png");
 	ui->lbPlayerCard1->setPixmap(image0.scaled(100,100,Qt::KeepAspectRatioByExpanding));
 	ui->lbPlayerCard1->setMask(image0.mask());
 	QPixmap image1(":/Images/1.png");
@@ -83,5 +194,5 @@ void GameWindow::showEvent(QShowEvent *event)
 	ui->lbTableCard5->setPixmap(image8.scaled(100,100,Qt::KeepAspectRatioByExpanding));
 	ui->lbTableCard5->setMask(image8.mask());
 
-	event->accept();
+	event->accept();*/
 }

@@ -52,5 +52,6 @@
         <file>Images/49.png</file>
         <file>Images/50.png</file>
         <file>Images/51.png</file>
+        <file>Images/back.png</file>
     </qresource>
 </RCC>

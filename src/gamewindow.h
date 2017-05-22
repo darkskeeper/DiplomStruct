@@ -21,6 +21,12 @@ private:
     Table *m_table;
     HumanPlayer *m_human;
     ComputerPlayer *m_computer;
+	QPixmap *imageBack;
+	bool isGameStart;
+	void hideAll();
+	void hideCards();
+	void showTable();
+	void setTableReady();
 
 protected:
 	virtual void closeEvent(QCloseEvent *event);
